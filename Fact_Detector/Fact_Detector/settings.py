@@ -76,8 +76,11 @@ WSGI_APPLICATION = 'Fact_Detector.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Fact_Detector',
+        'USER':'postgres',
+        'PASSWORD':'1451',
+        'HOST':'localhost'
     }
 }
 
