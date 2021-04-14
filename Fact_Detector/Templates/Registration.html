@@ -46,10 +46,11 @@
                 <button type="submit" class="submit-btn">Log In</button>
 
             </form>
-            <form id="register" class="input-group">
-                <input type="text" class="input-field" placeholder="User id" required>
-                <input type="email" class="input-field" placeholder="Email id" required>
-                <input type="text" class="input-field" placeholder="Enter Password" required>
+            <form id="register" class="input-group"  method="POST">
+                {% csrf_token %}
+                <input type="text" class="input-field" name="User id" placeholder="User id" required>
+                <input type="email" class="input-field" name="Email" placeholder="Email id" required>
+                <input type="text" class="input-field" name="Password" placeholder="Enter Password" required>
                 <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>
                 <button type="submit" class="submit-btn">Register</button>
 
