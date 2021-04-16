@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,35 +46,36 @@
                 </ul>
             </div>
 
-            <div class="contactForm">
+            <form class="contactForm" method="POST">
+                {% csrf_token %}
                 <h2>Send a Message</h2>
                 <div class="formbox1">
                     <div class="inputBox w50">
-                        <input type="text" name="" required>
+                        <input type="text" name="First Name" required>
                         <span>First Name</span>
                     </div>
                     <div class="inputBox w50">
-                        <input type="text" name="" required>
+                        <input type="text" name="Last Name" required>
                         <span>Last Name</span>
                     </div>
                     <div class="inputBox w50">
-                        <input type="text" name="" required>
+                        <input type="text" name="Email" required>
                         <span>Email Address</span>
                     </div>
                     <div class="inputBox w50">
-                        <input type="text" name="" required>
+                        <input type="text" name="Mobile Number" required>
                         <span>Mobile Number</span>
                     </div>
 
                     <div class="inputBox w100">
-                        <textarea name="" required></textarea>
+                        <textarea name="Message" required></textarea>
                         <span>Write your message here... </span>
                     </div>
                     <div class="inputBox w100">
                         <input type="submit" value="send">
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
