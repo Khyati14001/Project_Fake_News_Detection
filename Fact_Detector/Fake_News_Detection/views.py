@@ -4,7 +4,16 @@ from .models import Contact
 
 # Create your views here.
 def home(request):
-        return render(request,'home.html')
+
+    import requests
+    import json
+
+    news_api_request = requests.get(
+        "https://newsapi.org/v2/everything?q=tesla&from=2021-03-18&sortBy=publishedAt&apiKey=9af417b71f8a45248f70d19a18e7728d"    
+    )
+    api = json.loads(news_api_request.content)
+
+    return render(request,'home.html',  {'api':api})
 
 def about(request):
     return render(request,'about.html')

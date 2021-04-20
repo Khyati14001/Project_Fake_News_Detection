@@ -14,7 +14,7 @@
     <div class="main">
        <img src="{% static 'images/Rightlogo.png' %}" style="width:70px;height:80px;padding-left:78px;position:fixed;top: 0"  >
         <h1 style="font-family:cursive;font-size: 40px;top:0;line-height:80px;font-style:italic;color:rgba(230, 139, 54, 0.945);
-        padding-left:140px;float:left;position:fixed">Fact Detector</h1>
+        padding-left:150px;float:left;position:fixed">Fact Detector</h1>
     
         <nav>
             <ul>
@@ -25,38 +25,36 @@
             </ul>
         </nav>
             
-    </div>    
-        <div class="form-box">
-            <div class="button-box">
-                <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-                <button type="button" class="toggle-btn" onclick="register()">Register</button>
-            </div>
-            <div class="social-icons">
-                <img src="{% static 'images/Google logo.png' %}">
-                <img src="{% static 'images/fblogo.png' %}">
-                <hr class="colour">
-                <p class="or">or</p>
+    </div> 
        
-            </div>
-            <form id="login" class="input-group" method="POST" action="/login">
-                {% csrf_token %}
-                <input type="text" class="input-field" name="User id" placeholder="User id" required>
-                <input type="text" class="input-field" name="Password" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box"><span>Remember Password</span>
-                <button type="submit" class="submit-btn">Log In</button>
-
-            </form>
-            <form id="register" class="input-group"  method="POST" action="/register">
-                {% csrf_token %}
-                <input type="text" class="input-field" name="User id" placeholder="User id" required>
-                <input type="email" class="input-field" name="Email" placeholder="Email id" required>
-                <input type="text" class="input-field" name="Password" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>
-                <button type="submit" class="submit-btn">Register</button>
-
-            </form>
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+            <button type="button" class="toggle-btn" onclick="register()">Register</button>
         </div>
+        <div class="social-icons">
+            <img src="{% static 'images/Google logo.png' %}">
+            <img src="{% static 'images/fblogo.png' %}">
+            <hr class="colour">
+            <p class="or">or</p>
+        </div>
+        <form id="login" class="input-group" method="POST" action="/login">
+            {% csrf_token %}
+            <input type="text" class="input-field" name="User id" placeholder="User id" required>
+            <input type="text" class="input-field" name="Password" placeholder="Enter Password" required>
+            <input type="checkbox" class="check-box"><span>Remember Password</span>
+            <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        <form id="register" class="input-group" method="POST" action="/register">
+            {% csrf_token %}
+            <input type="text" class="input-field" name="User id" placeholder="User id" required>
+            <input type="email" class="input-field" name="Email" placeholder="Email id" required>
+            <input type="text" class="input-field" name="Password" placeholder="Enter Password" required>
+            <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+    </div>
     
     <script>
         var x = document.getElementById("login");
