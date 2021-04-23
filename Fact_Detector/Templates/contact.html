@@ -20,7 +20,11 @@
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About Us</a></li>
-                <li><a href="{% url 'Registration' %}">Log In / Sign Up</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                <li><a href="{% url 'Registration' %}">Log In / Sign Up </a></li>
+                {% endif %}
                 <li><a href="{% url 'contact' %}">Contact Us</a></li>
             </ul>
         </nav>

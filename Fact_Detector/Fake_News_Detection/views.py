@@ -1,6 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from .models import Contact
+import joblib
+
+import re
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 
 # Create your views here.
 def home(request):
@@ -9,7 +16,7 @@ def home(request):
     import json
 
     news_api_request = requests.get(
-        "https://newsapi.org/v2/everything?q=tesla&from=2021-03-18&sortBy=publishedAt&apiKey=9af417b71f8a45248f70d19a18e7728d"    
+       "https://newsapi.org/v2/everything?q=tesla&from=2021-03-21&sortBy=publishedAt&apiKey=9af417b71f8a45248f70d19a18e7728d"  
     )
     api = json.loads(news_api_request.content)
 
@@ -27,7 +34,7 @@ def login(request):
 
         if user is not None :
             auth.login(request, user)
-            return redirect('/')
+            return redirect('search.html')
 
         else :
             messages.info(request, "Invalid credential")
@@ -68,3 +75,58 @@ def contact(request):
 
     else :
         return render(request,'contact.html')
+
+
+def search(request) :
+    return render(request,'search.html')
+
+
+def preprocessArticle(article):
+    #Clean up and preprocess data
+    stop_words = stopwords.words('english')
+    lemmatizer = WordNetLemmatizer()
+
+    #Clean sentence to remove any punctuations, convert to lower case
+    cleaned_sentence = re.sub(r'[^\w\s]', '', str(article).lower())
+    #Tokenize sentence into words
+    words = nltk.word_tokenize(cleaned_sentence)
+    #Remove stop words and words with length less than equal to 3
+    filtered_words = [word for word in words if not word in stop_words and len(word) > 3]
+    #Lemmatize
+    output_sentence = ''
+    for word in filtered_words:
+        output_sentence = output_sentence  + ' ' + str(lemmatizer.lemmatize(word))
+   
+    print("\n After Preprocessing news : ", output_sentence)
+    print("\n")
+    return output_sentence
+
+
+def getPredictions(lis):
+    
+    model = joblib.load('final_trained_model.sav')
+    #scaled = joblib.load('preprocess.sav')
+    #prediction = model.predict(sc.transform([lis]))
+    article = preprocessArticle(lis)
+    prediction = model.predict([article])
+
+    if prediction == 0:
+        return "REAL"
+    elif prediction == 1:
+        return "FAKE"
+    else:
+        return "error"
+
+def result(request):
+    #cls = joblib.load('final_trained_model.sav')
+    #lis = []
+    #lis.append(request.GET['data'])
+    lis = str(request.GET['data'])
+    print(lis)
+    ans = getPredictions(lis)
+    #ans = str(cls.predict([lis]))
+    return render(request,'result.html',{'ans':ans, 'data':lis})
+
+def logout(request) :
+    auth.logout(request)
+    return redirect('/')

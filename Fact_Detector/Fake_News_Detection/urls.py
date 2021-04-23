@@ -18,4 +18,12 @@ urlpatterns =[
     url(r'^register$',views.register,name='Registration'),
     url(r'^login$',views.login,name='Registration'),
     url(r'^contact$',views.contact,name='contact'),
+    path('search.html',views.search,name='search'),
+    path('result.html',views.result,name='result'), 
+    path("logout",views.logout,name="logout"),
 ]
+
+'''
+url(r'^search$',views.search,name='search'),
+    url(r'^result$',views.result,name='result'),
+'''
