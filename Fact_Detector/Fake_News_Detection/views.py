@@ -16,7 +16,7 @@ def home(request):
     import json
 
     news_api_request = requests.get(
-       "https://newsapi.org/v2/everything?q=tesla&from=2021-03-21&sortBy=publishedAt&apiKey=9af417b71f8a45248f70d19a18e7728d"  
+       "https://newsapi.org/v2/everything?q=apple&from=2021-05-20&to=2021-05-20&sortBy=popularity&apiKey=9af417b71f8a45248f70d19a18e7728d"  
     )
     api = json.loads(news_api_request.content)
 
