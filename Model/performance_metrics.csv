@@ -1,0 +1,2 @@
+,accuracy,precision(macro),precision(micro),recall(macro),recall(micro),f1_score(macro),f1_score(micro)
+Linear SVC (TFIDF/Uni-bigram),96.02%,0.961,0.960,0.960,0.960,0.960,0.960
