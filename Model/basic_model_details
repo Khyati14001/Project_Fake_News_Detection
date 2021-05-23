@@ -1,7 +1,14 @@
 /* model of fact detector */
 
+
 /* download  "train.csv"  dataset from below link 
 
 https://www.kaggle.com/c/fake-news/data?select=train.csv
+
+*/
+
+
+/*
+Don't consider data of last pickle model in trained model
 
 */
